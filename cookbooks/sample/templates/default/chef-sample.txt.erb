@@ -1,0 +1,6 @@
+Welcome to Chef
+
+CPU : <%= node[:cpu][:"0"][:model_name] %>
+Mem : <%= node[:memory][:total] %>
+OS  : <%= node[:platform] %> <%= node[:platform_version] %>
+Memo : <%= node[:memo] %>
