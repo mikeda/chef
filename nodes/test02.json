@@ -1,0 +1,13 @@
+{
+  "name": "test02",
+  "chef_environment": "_default",
+  "run_list": [
+    "role[linux]"
+  ],
+  "normal": {
+    "tags": [
+
+    ],
+    "memo": "test server 2"
+  }
+}
