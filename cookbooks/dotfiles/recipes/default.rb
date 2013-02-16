@@ -11,10 +11,10 @@ package 'git' do
   action :install
 end
 
-login_users = data_bag('login_users')
+login_users = [ 'mikeda', 'sysadmin' ]
 
 login_users.each do |user|
-  home = data_bag_item('login_users', user)['home']
+  home = "/home/#{user}"
 
   git "#{home}/.dotfiles" do
     repository node['dotfiles']['repository']
