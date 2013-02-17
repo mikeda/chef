@@ -1,0 +1,10 @@
+[program:proteus-monitor-server]
+command=/home/sysadmin/proteus_monitor/node/bin/node /home/sysadmin/proteus_monitor/server/server.js --port <%= node.proteus_monitor.server.port %>
+process_name=%(program_name)s
+stdout_logfile_maxbytes=1MB
+stderr_logfile_maxbytes=1MB
+stdout_logfile=/var/log/supervisor/%(program_name)s.log
+stderr_logfile=/var/log/supervisor/%(program_name)s.log
+user=sysadmin
+autostart=true
+autorestart=true
