@@ -1,0 +1,13 @@
+{
+  "name": "mon01",
+  "chef_environment": "_default",
+  "run_list": [
+    "role[linux]",
+    "recipe[proteus_monitor::server]",
+    "recipe[proteus_monitor::agent]"
+  ],
+  "normal": {
+    "tags": [
+    ]
+  }
+}
