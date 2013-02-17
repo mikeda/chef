@@ -23,6 +23,11 @@ bash 'install_proteus-monitor-agent' do
   creates "#{install_dir}/node_modules"
 end
 
+execute "supervisorctl restart proteus-monitor-agent" do
+  action :nothing
+  user "root"
+end
+
 file node.proteus_monitor.agent.config do
   owner exec_user
   group exec_user
@@ -32,7 +37,7 @@ file node.proteus_monitor.agent.config do
     group: node.proteus_monitor.agent.group,
     plugins: node.proteus_monitor.agent.plugins
   })
-  notifies :run, resources(:execute => "supervisorctl update")
+  notifies :run, resources(:execute => "supervisorctl restart proteus-monitor-agent")
 end
 
 template '/etc/supervisord.d/proteus-monitor-agent.ini' do

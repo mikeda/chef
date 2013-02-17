@@ -28,12 +28,5 @@ template '/etc/supervisord.d/proteus-monitor-server.ini' do
   owner 'root'
   group 'root'
   mode 0644
-end
-
-bash 'supervisorctl update' do
-  user 'root'
-  code <<-EOF
-  supervisorctl update
-  EOF
-  not_if 'supervisorctl status proteus-monitor-server | grep RUNNING'
+  notifies :run, resources(:execute => "supervisorctl update")
 end
