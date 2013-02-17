@@ -1,0 +1,52 @@
+#!/bin/bash
+# chkconfig:    - 95 04
+# description:  supervisord
+# processname:  supervisord
+
+. /etc/rc.d/init.d/functions
+
+RETVAL=0
+
+start() {
+        echo -n $"Starting supervisord: "
+        daemon supervisord -c /etc/supervisord.conf
+        RETVAL=$?
+        echo
+        [ $RETVAL -eq 0 ] && touch /var/lock/subsys/supervisord
+}
+
+stop() {
+        echo -n $"Stopping supervisord: "
+        killproc supervisord
+        echo
+        [ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/supervisord
+}
+
+restart() {
+        stop
+        start
+}
+
+case "$1" in
+  start)
+        start
+        ;;
+  stop) 
+        stop
+        ;;
+  restart|force-reload|reload)
+        restart
+        ;;
+  condrestart)
+        [ -f /var/lock/subsys/supervisord ] && restart
+        ;;
+  status)
+        status supervisord
+        RETVAL=$?
+        ;;
+  *)
+        echo $"Usage: $0 {start|stop|status|restart|reload|force-reload|condrestart}"
+        exit 1
+esac
+
+exit $RETVAL
