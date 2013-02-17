@@ -14,6 +14,12 @@ directory '/etc/supervisord.d/' do
   mode 00755
   action :create
 end
+directory '/var/log/supervisor/' do
+  owner 'root'
+  group 'root'
+  mode 00755
+  action :create
+end
 
 cookbook_file '/etc/init.d/supervisord' do
   source 'supervisord.init'
