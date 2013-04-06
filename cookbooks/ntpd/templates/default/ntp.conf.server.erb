@@ -1,0 +1,15 @@
+driftfile /var/lib/ntp/drift
+
+restrict default kod nomodify notrap nopeer noquery
+restrict -6 default kod nomodify notrap nopeer noquery
+
+server ntp.nict.jp
+server ntp1.jst.mfeed.ad.jp
+server ntp2.jst.mfeed.ad.jp
+
+includefile /etc/ntp/crypto/pw
+keys /etc/ntp/keys
+
+restrict 127.0.0.1 
+restrict -6 ::1
+restrict 192.168.1.0 mask 255.255.255.0 nomodify notrap
