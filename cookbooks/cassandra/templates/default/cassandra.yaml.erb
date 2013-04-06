@@ -1,5 +1,5 @@
 cluster_name: '<%= node[:cassandra][:cluster_name] %>'
-initial_token: <%= node[:cassandra][:initial_token] %>
+initial_token: <%= node[:cassandra][:initial_token][node['hostname']] %>
 
 hinted_handoff_enabled: true
 max_hint_window_in_ms: 10800000
@@ -49,7 +49,7 @@ trickle_fsync_interval_in_kb: 10240
 
 storage_port: 7000
 ssl_storage_port: 7001
-listen_address: <%= node[:cassandra][:listen_address] %>
+listen_address: <%= node[:ipaddress] %>
 
 start_native_transport: false
 native_transport_port: 9042

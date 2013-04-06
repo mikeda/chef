@@ -1,0 +1,5 @@
+{
+  "run_list": [
+    "role[cassandra_test_cluster01]"
+  ]
+}
