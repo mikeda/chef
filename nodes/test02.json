@@ -1,8 +1,6 @@
 {
-  "name": "test02",
-  "chef_environment": "_default",
   "run_list": [
-    "role[linux]"
+    "role[default]"
   ],
   "normal": {
     "tags": [
