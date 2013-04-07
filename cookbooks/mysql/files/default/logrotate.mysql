@@ -1,0 +1,15 @@
+/var/log/mysqld.log /var/log/mysql/*.log {
+        create 644 mysql mysql
+        sharedscripts
+        daily
+        rotate 7
+        missingok
+    postrotate
+        # just if mysqld is really running
+        if test -x /usr/bin/mysqladmin && \
+           /usr/bin/mysqladmin -uroot ping &>/dev/null
+        then
+           /usr/bin/mysqladmin -uroot flush-logs
+        fi
+    endscript
+}
