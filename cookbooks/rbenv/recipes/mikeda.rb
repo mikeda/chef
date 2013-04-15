@@ -2,6 +2,10 @@ user = "mikeda"
 tar_file = "rbenv_#{user}.tgz"
 home = "/home/#{user}"
 
+%w(libxml2 libxml2-devel libxslt libxslt-devel).each do |pkg|
+  package pkg
+end
+
 remote_file "#{home}/#{tar_file}" do
   source "#{node.variables.file_server_url}/ruby/#{tar_file}"
   mode 00755
