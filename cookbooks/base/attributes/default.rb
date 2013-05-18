@@ -4,4 +4,5 @@ default[:base][:packages] = %w(
   telnet
   nc
   sl
+  net-snmp-utils
 )

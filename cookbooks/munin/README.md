@@ -1,12 +1,4 @@
 Description
 ===========
 
-Requirements
-============
-
-Attributes
-==========
-
-Usage
-=====
-
+munin
