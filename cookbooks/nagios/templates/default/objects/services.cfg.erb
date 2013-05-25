@@ -1,0 +1,34 @@
+define service{
+  use                  generic-service
+  hostgroup_name       linux
+  service_description  Disk Usage
+  check_command        check_nrpe_arg!check_disk!20% 10% /
+  }
+
+define service{
+  use                  generic-service
+  hostgroup_name       linux
+  service_description  Load
+  check_command        check_nrpe_arg!check_load!2,2,2 4,4,4
+  }
+
+define service{
+  use                  generic-service
+  hostgroup_name       linux
+  service_description  Swap Usage
+  check_command        check_nrpe_arg!check_swap!50 20
+  }
+
+define service{
+  use                  generic-service
+  hostgroup_name       httpd
+  service_description  httpd process
+  check_command        check_nrpe!check_httpd_procs
+  }
+
+define service{
+  use                  generic-service
+  hostgroup_name       nginx
+  service_description  nginx process
+  check_command        check_nrpe!check_nginx_procs
+  }

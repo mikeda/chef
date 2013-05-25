@@ -1,0 +1,9 @@
+<% node[:nagios][:server][:servers].each do |sv| %>
+define host{
+  use         linux-server
+  host_name   <%= sv[:host_name] %>
+  hostgroups  <%= sv[:hostgroups].join(', ') %>
+  address     <%= sv[:address] %>
+  }
+
+<% end %>

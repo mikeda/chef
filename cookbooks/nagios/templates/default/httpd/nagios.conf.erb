@@ -1,0 +1,34 @@
+<VirtualHost *:80>
+  ServerName nagios.mikeda.jp
+
+  DocumentRoot /usr/share/nagios/html
+  ErrorLog  /var/log/httpd/nagios.mikeda.jp-error.log
+  CustomLog /var/log/httpd/nagios.mikeda.jp-access.log combined
+
+  ScriptAlias /nagios/cgi-bin/ "/usr/lib64/nagios/cgi-bin/"
+  
+  <Directory "/usr/lib64/nagios/cgi-bin/">
+     Options ExecCGI
+     AllowOverride None
+     Order allow,deny
+     Allow from all
+
+     AuthName "Nagios Access"
+     AuthType Basic
+     AuthUserFile /etc/nagios/passwd
+     Require valid-user
+  </Directory>
+  
+  <Directory "/usr/share/nagios/html">
+     Options None
+     AllowOverride None
+     Order allow,deny
+     Allow from all
+
+     AuthName "Nagios Access"
+     AuthType Basic
+     AuthUserFile /etc/nagios/passwd
+     Require valid-user
+  </Directory>
+  
+</VirtualHost>
